@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Rangni Top o'yni</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(45deg, #f7f7f7, #d3f2ff);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        .game-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            max-width: 1000px;
+            padding: 30px;
+        }
+
+        .info-container {
+            width: 400px;;
+            max-width: 400px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            color: greenyellow;
+            margin-bottom: 10px;
+        }
+        p {
+            color: black;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .word {
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .word:hover {
+            transform: scale(1.1);
+        }
+
+        .sariq {
+            color: rgb(58, 227, 7);
+            background-color: rgba(58, 227, 7, 0.1);
+        }
+
+        .qora {
+            color: rgb(225, 12, 12);
+            background-color: rgba(225, 12, 12, 0.1);
+        }
+
+        .qizil {
+            color: rgb(0, 21, 255);
+            background-color: rgba(0, 21, 255, 0.1);
+        }
+
+        .yashil {
+            color: rgb(238, 255, 0);
+            background-color: rgba(238, 255, 0, 0.1);
+        }
+
+        .ko-k {
+            color: rgb(2, 128, 0);
+            background-color: rgba(2, 128, 0, 0.1);
+        }
+
+        .sariq:hover { background-color: rgb(58, 227, 7); color: #fff; }
+        .qora:hover { background-color: rgb(225, 12, 12); color: #fff; }
+        .qizil:hover { background-color: rgb(0, 21, 255); color: #fff; }
+        .yashil:hover { background-color: rgb(238, 255, 0); color: #fff; }
+        .ko-k:hover { background-color: rgb(2, 128, 0); color: #fff; }
+
+        .shuffle-btn {
+            margin-top: 20px;
+            font-size: 24px;
+            padding: 10px 20px;
+            background-color: #00aaff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .shuffle-btn:hover {
+            background-color: #0077cc;
+        }
+
+        /* Responsivlik uchun o'zgartirish */
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="game-container">
+        <div class="info-container">
+            <h1>Rangni Toping O'yini</h1>
+            <p>Siz Rangni topishingiz kerak, so'zni emas, balki orqa fondagi rangni aytishingiz kerak.</p>
+        </div>
+
+        <div class="container" id="wordContainer">
+            <div class="word qizil">QIZIL</div>
+            <div class="word sariq">SARIQ</div>
+            <div class="word qora">QORA</div>
+            <div class="word ko-k">KO'K</div>
+            <div class="word yashil">YASHIL</div>
+            <div class="word qizil">QIZIL</div>
+            <div class="word qora">QORA</div>
+            <div class="word yashil">YASHIL</div>
+            <div class="word ko-k">KO'K</div>
+            <div class="word qizil">QIZIL</div>
+            <div class="word yashil">YASHIL</div>
+            <div class="word sariq">SARIQ</div>
+            <div class="word qora">QORA</div>
+            <div class="word ko-k">KO'K</div>
+            <div class="word qizil">QIZIL</div>
+            <div class="word yashil">YASHIL</div>
+            <div class="word qizil">QIZIL</div>
+            <div class="word sariq">SARIQ</div>
+            <div class="word yashil">YASHIL</div>
+            <div class="word sariq">SARIQ</div>
+            
+        </div>
+
+        <button class="shuffle-btn" onclick="shuffleWords()">
+            <i class="bi bi-arrow-clockwise"></i>  Ranglarni Almash
+        </button>
+    </div>
+
+    <script>
+        // Feather ikonkalari yuklash
+        feather.replace();
+
+        // Ranglar tartibini tasodifiy o'zgartirish
+        function shuffleWords() {
+            const container = document.getElementById('wordContainer');
+            const words = Array.from(container.children);
+            container.innerHTML = ''; // Eski tartibni olib tashlash
+            while (words.length > 0) {
+                const randomIndex = Math.floor(Math.random() * words.length);
+                const randomWord = words.splice(randomIndex, 1)[0];
+                container.appendChild(randomWord); // Yangi tartibni qo'shish
+            }
+        }
+    </script>
+
+    <!-- Feather ikonka kutubxonasi -->
+    <script src="https://unpkg.com/feather-icons"></script>
+
+</body>
+</html>
