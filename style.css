@@ -1,1 +1,78 @@
-@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #e8e6db;
+    font-family: Arial, sans-serif;
+}
+
+.door-container {
+    display: flex;
+    gap: 50px; /* Eshiklar orasidagi masofa oshdi */
+}
+
+.door {
+    position: relative;
+    width: 180px; /* Eshik kengligi oshirildi */
+    height: 300px; /* Eshik balandligi oshirildi */
+    background: #ccc;
+    border: 5px solid #333;
+    border-radius: 8px;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease;
+    overflow: hidden;
+}
+
+.door:hover {
+    transform: scale(1.05);
+}
+
+.knob {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: #444;
+    border-radius: 50%;
+    right: 20px;
+    bottom: 150px;
+    box-shadow: inset 0 2px 5px rgba(255, 255, 255, 0.3);
+}
+
+.door::before,
+.door::after {
+    content: "";
+    position: absolute;
+    width: 90%;
+    height: 35%;
+    background: rgba(255, 255, 255, 0.1);
+    border: 3px solid rgba(0, 0, 0, 0.2);
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.door::before {
+    top: 15px;
+}
+
+.door::after {
+    bottom: 15px;
+}
+
+.text {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    padding: 30px;
+    position: absolute;
+    top: 15px;
+    font-size: 24px; /* Yozuv hajmi oshdi */
+    font-weight: bold;
+    color: #333;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
