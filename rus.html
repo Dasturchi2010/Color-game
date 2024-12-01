@@ -102,23 +102,35 @@
         .зелёный:hover { background-color: rgb(238, 255, 0); color: #fff; }
         .синий:hover { background-color: rgb(2, 128, 0); color: #fff; }
 
-        .shuffle-btn {
-            margin-top: 20px;
-            font-size: 24px;
-            padding: 10px 20px;
-            background-color: #00aaff;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+        .shuffle-btn, .home-btn {
+    margin: 10px; /* Tugmalar orasidagi masofa */
+    font-size: 18px; /* Kichikroq shrift */
+    padding: 8px 16px; /* Kichikroq joylashuv */
+    background-color: #00aaff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    display: inline-block; /* Yonma-yon qilish uchun */
+    text-align: center;
+}
 
-        .shuffle-btn:hover {
-            background-color: #0077cc;
-        }
+.shuffle-btn:hover, .home-btn:hover {
+    background-color: #0077cc;
+}
+
+/* Tugmalarni o'rtaga va yonma-yon joylashtirish */
+.game-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+button {
+    display: inline-block;
+}
+
 
         @media (max-width: 768px) {
             .container {
@@ -164,10 +176,11 @@
             <div class="word зелёный">ЗЕЛЁНЫЙ</div>
             <div class="word жёлтый">ЖЁЛТЫЙ</div>
         </div>
-
-        <button class="shuffle-btn" onclick="shuffleWords()">
-            <i class="bi bi-arrow-clockwise"></i> Перемешать цвета
-        </button>
+            
+        <div class="button-container">
+            <button class="shuffle-btn" onclick="shuffleWords()">Перемешать цвета</button>
+            <button class="home-btn" onclick="location.href='index.html'">главная страница</button>
+        </div>
     </div>
 
     <script>
